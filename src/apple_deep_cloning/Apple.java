@@ -3,6 +3,7 @@ package apple_deep_cloning;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Apple implements Cloneable {
 
@@ -21,12 +22,11 @@ public class Apple implements Cloneable {
     @Override
     public Apple clone() {
         try {
+            //refactoring using a stream pipeline (which returns a new list object - populating it with cloned Seeds)
             Apple clonedApple = (Apple) super.clone();
-            clonedApple.seeds = new ArrayList<>();
-            for(Seed s : this.seeds) {
-                //need to remember to call Seed's own clone method here
-                clonedApple.seeds.add(s.clone());
-            }
+            clonedApple.seeds = seeds.stream()
+                    .map(Seed::clone)
+                    .collect(Collectors.toList());
             return clonedApple;
 
         } catch (CloneNotSupportedException e) {
