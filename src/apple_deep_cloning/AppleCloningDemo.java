@@ -1,4 +1,4 @@
-package assorted__TO_MOVE.object_cloning;
+package apple_deep_cloning;
 
 public class AppleCloningDemo {
     public static void main(String[] args) {
